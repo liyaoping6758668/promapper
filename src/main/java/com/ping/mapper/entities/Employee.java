@@ -23,6 +23,16 @@ public class Employee {
         this.empAge = empAge;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empid=" + empid +
+                ", empName='" + empName + '\'' +
+                ", empSalary=" + empSalary +
+                ", empAge=" + empAge +
+                '}';
+    }
+
     public Integer getEmpid() {
         return empid;
     }
