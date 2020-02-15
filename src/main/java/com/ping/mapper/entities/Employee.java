@@ -1,12 +1,15 @@
 package com.ping.mapper.entities;
 
+import javax.persistence.Table;
+
 /**
  * @author:lyp
  * @date 2020/2/13-10:21
  * 员工实体类
  */
+@Table(name="tabple_emp")
 public class Employee {
-    private Integer empid;
+    private Integer empId;
     private String empName;
     private Double empSalary;
     private Integer empAge;
@@ -16,8 +19,8 @@ public class Employee {
     }
 
     //有参构造
-    public Employee(Integer empid, String empName, Double empSalary, Integer empAge) {
-        this.empid = empid;
+    public Employee(Integer empId, String empName, Double empSalary, Integer empAge) {
+        this.empId = empId;
         this.empName = empName;
         this.empSalary = empSalary;
         this.empAge = empAge;
@@ -26,19 +29,19 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "empid=" + empid +
+                "empId=" + empId +
                 ", empName='" + empName + '\'' +
                 ", empSalary=" + empSalary +
                 ", empAge=" + empAge +
                 '}';
     }
 
-    public Integer getEmpid() {
-        return empid;
+    public Integer getEmpId() {
+        return empId;
     }
 
-    public void setEmpid(Integer empid) {
-        this.empid = empid;
+    public void setEmpId(Integer empId) {
+        this.empId = empId;
     }
 
     public String getEmpName() {
