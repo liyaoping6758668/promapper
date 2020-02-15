@@ -2,10 +2,13 @@ package com.ping.mapper;
 
 import com.ping.mapper.entities.Employee;
 import com.ping.mapper.service.EmployeeService;
-import com.ping.mapper.service.impl.EmployeeServiceImpl;
+import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.entity.Example.Criteria;
+import java.util.List;
 
 
 public class EmployeeMapperTest {
@@ -102,7 +105,44 @@ public class EmployeeMapperTest {
 
 	@Test
 	public void testSelectByExample() {
-		
+		//目标：WHERE (emp_salary>? AND emp_age<?) OR (emp_salary<? AND emp_age>?)
+		//1.创建Example对象
+		Example example = new Example(Employee.class);
+
+		//***********************
+		//i.设置排序信息
+		example.orderBy("empSalary").asc().orderBy("empAge").desc();
+
+		//ii.设置“去重”
+		example.setDistinct(true);
+
+		//iii.设置select字段
+		example.selectProperties("empName","empSalary");
+
+		//***********************
+
+		//2.通过Example对象创建Criteria对象
+		Criteria criteria01 = example.createCriteria();
+		Criteria criteria02 = example.createCriteria();
+
+		//3.在两个Criteria对象中分别设置查询条件
+		//property参数：实体类的属性名
+		//value参数：实体类的属性值
+		criteria01.andGreaterThan("empSalary", 3000)
+				.andLessThan("empAge", 25);
+
+		criteria02.andLessThan("empSalary", 5000)
+				.andGreaterThan("empAge", 30);
+
+		//4.使用OR关键词组装两个Criteria对象
+		example.or(criteria02);
+
+		//5.执行查询
+		List<Employee> empList = employeeService.getEmpListByExample(example);
+
+		for (Employee employee : empList) {
+			System.out.println(employee);
+		}
 
 	}
 
@@ -136,9 +176,20 @@ public class EmployeeMapperTest {
 		
 	}
 
+	//sql语句并没有分页，只是内存查询的数据做了分页
 	@Test
 	public void testSelectByRowBounds() {
-		
+		int pageNo = 3;
+		int pageSize = 5;
+
+		int index = (pageNo - 1) * pageSize;
+
+		RowBounds rowBounds = new RowBounds(index, pageSize);
+
+		List<Employee> empList = employeeService.getEmpListByRowBounds(rowBounds);
+		for (Employee employee : empList) {
+			System.out.println(employee);
+		}
 
 		
 	}
