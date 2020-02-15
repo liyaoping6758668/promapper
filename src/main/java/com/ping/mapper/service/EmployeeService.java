@@ -15,4 +15,6 @@ public interface EmployeeService {
     void saveEmployeeSelective(Employee employee);
 
     void updateEmployeeSelective(Employee employee);
+
+    void deleteByPrimaryKey(Integer empid);
 }

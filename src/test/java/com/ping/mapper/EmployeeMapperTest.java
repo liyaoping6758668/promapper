@@ -95,6 +95,8 @@ public class EmployeeMapperTest {
 	@Test
 	public void testDeleteByPrimaryKey() {
 
+		Integer empid=5;
+		employeeService.deleteByPrimaryKey(empid);
 		
 	}
 

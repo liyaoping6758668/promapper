@@ -44,5 +44,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.updateByPrimaryKeySelective(employee);
     }
 
+    @Override
+    public void deleteByPrimaryKey(Integer empid) {
+        employeeMapper.deleteByPrimaryKey(empid);
+    }
+
 
 }
