@@ -11,4 +11,8 @@ public interface EmployeeService {
 
 
     void saveEmployee(Employee employee);
+
+    void saveEmployeeSelective(Employee employee);
+
+    void updateEmployeeSelective(Employee employee);
 }

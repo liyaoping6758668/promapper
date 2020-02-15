@@ -63,23 +63,26 @@ public class EmployeeMapperTest {
 		System.out.println(empId);
 	}
 
+	//除了主键外空的值不插入
 	@Test
 	public void testInsertSelective() {
-		
+		Employee employee=new Employee(null,"李耀平",6000.00,null);
+		employeeService.saveEmployeeSelective(employee);
 
 		
 	}
+
 
 	@Test
 	public void testUpdateByPrimaryKey() {
-		
+		Employee employee=new Employee(null,"李耀平",6000.00,null);
+		employeeService.saveEmployeeSelective(employee);
 	}
-
+	//除了主键外空的值不更新
 	@Test
 	public void testUpdateByPrimaryKeySelective() {
-		
-
-		
+		Employee employee=new Employee(6,"888李耀平",888.00,66);
+		employeeService.updateEmployeeSelective(employee);
 	}
 
 	@Test
