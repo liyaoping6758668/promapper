@@ -6,4 +6,9 @@ import com.ping.mapper.entities.Employee; /**
  */
 public interface EmployeeService {
     Employee getOne(Employee employeeQueryCondition);
+
+    Employee getEmployeeById(Integer empid);
+
+
+    void saveEmployee(Employee employee);
 }

@@ -22,4 +22,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeMapper.selectOne(employeeQueryCondition);
         return employee;
     }
+
+    @Override
+    public Employee getEmployeeById(Integer empid) {
+        Employee employee = employeeMapper.selectByPrimaryKey(empid);
+        return employee;
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        employeeMapper.insert(employee);
+    }
+
+
 }

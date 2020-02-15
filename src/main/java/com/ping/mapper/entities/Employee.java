@@ -1,6 +1,6 @@
 package com.ping.mapper.entities;
 
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author:lyp
@@ -9,8 +9,11 @@ import javax.persistence.Table;
  */
 @Table(name="tabple_emp")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer empId;
     private String empName;
+    @Column(name = "emp_salary")
     private Double empSalary;
     private Integer empAge;
 

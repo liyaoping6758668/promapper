@@ -43,9 +43,9 @@ public class EmployeeMapperTest {
 
 	@Test
 	public void testSelectByPrimaryKey() {
-		
-
-		
+		Integer empid=3;
+		Employee employee=employeeService.getEmployeeById(empid);
+		System.out.println(employee);
 	}
 
 	@Test
@@ -56,9 +56,11 @@ public class EmployeeMapperTest {
 
 	@Test
 	public void testInsert() {
-		
-
-		
+		Employee employee=new Employee(null,"李耀平",5000.00,23);
+		employeeService.saveEmployee(employee);
+		//获取插入数据生成的主键,复制到实体类需要配置注解
+		Integer empId = employee.getEmpId();
+		System.out.println(empId);
 	}
 
 	@Test
